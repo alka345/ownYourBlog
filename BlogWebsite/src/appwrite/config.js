@@ -1,7 +1,8 @@
 import conf from "../conf/conf";
 import { Client, ID, Databases, Storage, Query } from 'appwrite';
 
-export class Service{
+
+export class AuthService {
     client = new Client();
     databases;
     bucket;
@@ -13,6 +14,7 @@ export class Service{
             this.databases = new Databases(this.client);
             this.bucket = new Storage(this.client);
     }
+
     async createPost({title, slug, content, featuredImage, status, userId}){
         try {
             return await this.databases.createDocument(
@@ -28,7 +30,7 @@ export class Service{
                 }
             )
         } catch (error) {
-            console.log("Appwrite service :: createPost :: error",error);
+            console.log("Appwrite AuthService  :: createPost :: error",error);
         }
     }
 
@@ -47,7 +49,7 @@ try {
         }
     );
 } catch (error) {
-    console.log("Appwrite Service :: updatePost ::error",error);
+    console.log("Appwrite AuthService  :: updatePost ::error",error);
 }
     }
 
@@ -60,7 +62,7 @@ try {
             )
             return true
         } catch (error) {
-         console.log("Appwrite service :: deletePost :: error",error);   
+         console.log("Appwrite AuthService  :: deletePost :: error",error);   
          return false
         }
     }
@@ -111,8 +113,10 @@ try {
         conf.appwriteBucketId,
         fileId
     )
+    return true
 } catch (error) {
     console.log("Appwrite service :: deleteFile :: error",error);
+    return false
 }
 }
 
@@ -125,7 +129,7 @@ getFilePreview(fileId){
 
 }
 
-const service = new Service()
-export default Service
+const authService = new AuthService()
+export default authService
 
 

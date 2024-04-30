@@ -17,7 +17,8 @@ export default function RTE({name, control, label, defaultValue = ""}) {
             initialValue={defaultValue}
             init={
              {
-             branding: false,
+              initialValue: defaultValue,
+              // branding: false,
              height : 500,
              menubar : true,
              plugins: [
@@ -27,7 +28,7 @@ export default function RTE({name, control, label, defaultValue = ""}) {
                  "link", 
                  "image",
                  "charmap",
-                 "print",
+                //  "print",
                  "preview",
                  "anchor",
                  'searchreplace',
@@ -37,10 +38,11 @@ export default function RTE({name, control, label, defaultValue = ""}) {
                  'insertdatetime',
                  "media",
                   "table",
-                  "paste",
+                  // "paste",
                   "code",
                   "help",
                   "wordcount"
+                  
              ],
              toolbar: 'undo redo| blocks | image | bold italic forecolor| alignleft aligncenter bold italic forecolor | alignleft aligncenter alignright alignjustify |bullist numlist outdent indent | removeformat | help',
              content_style:"body { font-family:Helvetica,Arial,sans-serif; font-size:14px }"
@@ -51,11 +53,7 @@ export default function RTE({name, control, label, defaultValue = ""}) {
             />
            )
          }
-         
-         
-         
-            // 
-        // )}
+   
         />
     </div>
   )

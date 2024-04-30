@@ -30,7 +30,7 @@ function Signup() {
    <div className='flex items-center justify-center'>
     <div className={`mx-auto w-full max-w-lg bg-gray-100 rounded-xl p-10 border border-black/10`}>
         <div className='mb-2 flex justify-center'>
-            <span className='inline-block w-full max-w-[100px'>
+            <span className='inline-block w-full max-w-[100px]'>
                 <Logo width='100%'/>
             </span>
         </div>
@@ -71,14 +71,14 @@ function Signup() {
                 label="Password:"
                 type="password"
                 placeholder="Enter your password"
-                {...register("passowrd",{
+                {...register("password",{
                     required: true,
                 })}
                 />
-                <button
+                <Button
                 type='submit'
                 className='w-full'
-                >Create Account</button>
+                >Create Account</Button>
             </div>
         </form>
     </div>

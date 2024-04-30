@@ -5,6 +5,7 @@ function Button({
     type = 'button',
     // default values
     bgColor = 'bg-blue-600',
+    textColor = "text-white",
     // classname is taken empty 
     className = '',
     ...props

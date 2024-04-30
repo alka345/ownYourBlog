@@ -6,7 +6,9 @@ function Home() {
     const [posts, setPosts] = useState([])
 
     useEffect(() => {
-        appwriteService.getPosts().then((posts) => {
+        
+        appwriteService.getPosts()
+        .then((posts) => {
             if(posts){
                 setPosts(posts.documents)
             }
@@ -14,7 +16,7 @@ function Home() {
     }, [])
   
     
-  if(posts.length === 0)
+  if(posts.length === 0){
   return(
 <div className='w-full py-8 mt-4 text-center'>
     <Container>
@@ -28,6 +30,7 @@ function Home() {
     </Container>
 </div>
 )
+  }
 
 return (
     <div className='w-full py-8'>
@@ -42,6 +45,7 @@ return (
         </Container>
     </div>
 )
+
 }
 
 export default Home

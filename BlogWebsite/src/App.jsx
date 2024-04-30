@@ -3,7 +3,7 @@ import {useDispatch} from 'react-redux'
 import './App.css'
 import authService from './appwrite/auth'
 import {login, logout} from "./store/authSlice"
-import { Footer, Header } from './components'
+import { Footer, Header} from './components'
 import { Outlet } from 'react-router-dom'
 
 function App() {
@@ -27,13 +27,13 @@ authService.getCurrentUser()
     <div className='w-full block'>
     <Header/>
     <main>
-      TODO:{/* <Outlet/> */}
+      TODO:<Outlet/>
       {/* Get from react-router-Dom  */}
     </main>
     <Footer/>
     </div>
   </div>
-    ) : (null)
+    ) : null
   
 }
 
