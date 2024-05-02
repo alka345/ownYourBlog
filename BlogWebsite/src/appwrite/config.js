@@ -1,8 +1,8 @@
-import conf from "../conf/conf";
+import conf from "../conf/conf.js";
 import { Client, ID, Databases, Storage, Query } from 'appwrite';
 
 
-export class AuthService {
+export class Service {
     client = new Client();
     databases;
     bucket;
@@ -15,12 +15,17 @@ export class AuthService {
             this.bucket = new Storage(this.client);
     }
 
-    async createPost({title, slug, content, featuredImage, status, userId}){
+    //create a new document
+    async createPost({title,  content, slug, featuredImage, status, userId}){
+        
+        console.log(slug);
         try {
             return await this.databases.createDocument(
                 conf.appwriteDatabaseId,
                 conf.appwriteCollectionId,
                 slug,
+                
+
                 {
                     title,
                     content,
@@ -31,15 +36,17 @@ export class AuthService {
             )
         } catch (error) {
             console.log("Appwrite AuthService  :: createPost :: error",error);
+            
         }
     }
 
+    //update a new document by its unique ID
     async updatePost(slug, {title, content, featuredImage, status}){
-try {
-    return await this.databases.updateDocument(
-        conf.appwriteDatabaseId,
-        conf.appwriteCollectionId,
-        slug,
+    try {
+        return await this.databases.updateDocument(
+            conf.appwriteDatabaseId,
+            conf.appwriteCollectionId,
+            slug,
         {
             title,
             content,
@@ -53,6 +60,7 @@ try {
 }
     }
 
+    //delete document by its unique ID
     async deletePost(slug){
         try {
             await this.databases.deleteDocument(
@@ -67,6 +75,7 @@ try {
         }
     }
 
+    //get document by its unique ID
     async getPost(slug){
         try {
          return await this.databases.getDocument(
@@ -80,6 +89,7 @@ try {
         }
     }
 
+    //list of all the user's documents in a given collection
     async getPosts(queries = [Query.equal("status","active")]){
         try {
             return await this.databases.listDocuments(
@@ -94,10 +104,11 @@ try {
         }
     }
 
-    //file upload service
+    //create a new file
 async uploadFile(file){
     try {
        return await this.bucket.createFile(
+        conf.appwriteBucketId,        
         ID.unique(),
         file
        )  
@@ -107,6 +118,7 @@ async uploadFile(file){
     }
 }
 
+    //delete file by its unique ID
 async deleteFile(fileId){
 try {
     await this.bucket.deleteFile(
@@ -120,6 +132,7 @@ try {
 }
 }
 
+    //get a file preview image
 getFilePreview(fileId){
     return this.bucket.getFilePreview(
         conf.appwriteBucketId,
@@ -129,7 +142,7 @@ getFilePreview(fileId){
 
 }
 
-const authService = new AuthService()
-export default authService
+const service = new Service()
+export default service
 
 
