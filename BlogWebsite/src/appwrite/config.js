@@ -18,14 +18,13 @@ export class Service {
     //create a new document
     async createPost({title,  content, slug, featuredImage, status, userId}){
         
-        console.log(slug);
+        
         try {
             return await this.databases.createDocument(
                 conf.appwriteDatabaseId,
                 conf.appwriteCollectionId,
-                slug,
-                
-
+                // slug,
+                ID.unique(),
                 {
                     title,
                     content,

@@ -42,11 +42,11 @@ function PostForm({post}) {
 
                 if (file) {
                     const fileId = file.$id
-                    data.featuredImage = fileId
+                    data.featuredImage = fileId;
                     const dbPost = await appwriteService.createPost({
                         ...data,
-                        userId: userData.$id,
-                    })
+                        userId: userData.$id
+                    });
                     if(dbPost){
                         navigate(`/post/${dbPost.$id}`)
                     }
@@ -61,7 +61,7 @@ function PostForm({post}) {
     return value
     .trim()
     .toLowerCase()
-    .replace(/[a-zA-Z\d\s]+/g,'a')
+    .replace(/^[a-zA-Z\d\s]+/g,'a')
     .replace(/\s/g,'a')
 
     return ''
